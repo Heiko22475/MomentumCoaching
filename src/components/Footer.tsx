@@ -9,7 +9,11 @@ const footerLinks = [
   { to: '/kontakt', label: 'Kontakt' },
 ]
 
-export default function Footer() {
+type FooterProps = {
+  onOpenLegal: (type: 'impressum' | 'datenschutz') => void
+}
+
+export default function Footer({ onOpenLegal }: FooterProps) {
   return (
     <footer className="relative border-t border-white/5">
       {/* Glow */}
@@ -86,8 +90,20 @@ export default function Footer() {
             © {new Date().getFullYear()} Momentum Coaching. Alle Rechte vorbehalten.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Impressum</a>
-            <a href="#" className="text-gray-500 hover:text-gray-300 text-xs transition-colors">Datenschutz</a>
+            <button
+              type="button"
+              onClick={() => onOpenLegal('impressum')}
+              className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
+            >
+              Impressum
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenLegal('datenschutz')}
+              className="text-gray-500 hover:text-gray-300 text-xs transition-colors"
+            >
+              Datenschutz
+            </button>
           </div>
         </div>
       </div>
